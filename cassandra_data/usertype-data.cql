@@ -1,0 +1,11 @@
+cqlsh:sfapp> CREATE TABLE UserType (userid int, type text, primary key(userid));
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (0,'R');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (1,'S');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (2,'R');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (3,'R');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (4,'S');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (5,'R');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (6,'S');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (7,'R');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (8,'R');
+cqlsh:sfapp> INSERT INTO UserType (userid,type) VALUES (9,'R');
