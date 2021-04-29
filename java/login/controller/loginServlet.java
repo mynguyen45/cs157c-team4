@@ -18,12 +18,7 @@ import regularUser.ruserModel.regularUser;
 @WebServlet("/login")
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	//private r_user_dao suser_dao = new r_user_dao();
-	
-	//public void init() {
-	//	suser_dao = new r_user_dao();
-	//}
+   
     /**
      * @see HttpServlet#HttpServlet()
      */
