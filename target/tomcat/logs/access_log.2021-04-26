@@ -1,0 +1,12 @@
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:20:20:06 -0700] "GET /adoptable/index.jsp HTTP/1.1" 200 113 http-bio-8080-exec-1 228
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:20:20:06 -0700] "GET /adoptable/index.jsp HTTP/1.1" 200 113 http-bio-8080-exec-2 3
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:20:20:06 -0700] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:20:20:15 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 152 http-bio-8080-exec-9 1081
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:20:20:19 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 152 http-bio-8080-exec-3 4
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:20:20:34 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 161 http-bio-8080-exec-4 462
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:23:11:14 -0700] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:23:11:16 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 898 http-bio-8080-exec-9 430
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:23:11:47 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 840 http-bio-8080-exec-3 135
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:23:12:44 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 878 http-bio-8080-exec-6 136
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:23:13:26 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 862 http-bio-8080-exec-5 129
+0:0:0:0:0:0:0:1 - - [26/Apr/2021:23:13:53 -0700] "GET /adoptable/create_post.jsp HTTP/1.1" 200 866 http-bio-8080-exec-10 116
