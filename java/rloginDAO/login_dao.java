@@ -21,7 +21,10 @@ public class login_dao{
         
         PreparedStatement prepared = session.prepare(queryUserName);
     	BoundStatement bound = prepared.bind(ruser.getUsername());
-    	ResultSet result = session.execute(bound);    	
+    	ResultSet result = session.execute(bound);  
+        if(result.equals(ruser.getPassword())){
+    		//load home page
+    	}
     	System.out.println(result.all());    
     }
 }
