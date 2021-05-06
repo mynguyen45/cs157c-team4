@@ -13,7 +13,7 @@ import shelterUser.suserModel.shelterUser;
 public class s_user_dao{
     public static void registerSuser(shelterUser suser) throws DriverException{   	
         //queries 
-        String insert_user = "INSERT INTO shelterusers (userid,username, address, email, password) values (12,?,?,?,?)";
+        String insert_user = "INSERT INTO shelterusers (userid,username, address, email, password) values (userid(),?,?,?,?)";
         //Creating Cluster object 
         Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
         //Creating Session object 
