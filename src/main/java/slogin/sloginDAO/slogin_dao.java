@@ -13,7 +13,7 @@ import slogin.sloginModel.sloginInfo;
 public class slogin_dao{
     public boolean loginSuser(sloginInfo suser) throws DriverException{   	
         //check if username and password matches 
-        String login_shelter = "select * from shelterusers where username = (?) AND password = (?);";
+        String login_shelter = "select * from shelterusers where username = ? AND password = ?;";
         //Creating Cluster object 
         Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
         //Creating Session object 
