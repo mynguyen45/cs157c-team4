@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Time Tracking Application</title>
+	<title>Adoptable</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -34,9 +34,9 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
-				<form class="login100-form validate-form" action="<%=request.getContextPath()%>/login" method="post">
+				<form class="login100-form validate-form" action="<%=request.getContextPath()%>/slogin" method="post">
 					<span class="login100-form-title p-b-70">
-						Time Tracking Application
+						Adoptable
 					</span>
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
@@ -56,7 +56,7 @@
 
 					<ul class="login-more p-t-190">
 						<li>
-							<a href="http://localhost:8080/account.jsp" class="txt2">
+							<a href="http://localhost:8080/adoptable.web/account.jsp" class="txt2">
 								Sign up
 							</a>
 						</li>
