@@ -1,4 +1,4 @@
-package shelterUser.controller;
+package servlets;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shelterUser.suserDAO.s_user_dao;
-import shelterUser.suserModel.shelterUser;
+import beans.shelterUser;
+import daos.s_user_dao;
 
 /**
  * Servlet implementation class EmployeeServlet

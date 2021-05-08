@@ -1,14 +1,11 @@
-package createPost;
+package servlets;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,13 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import daos.PostDAO;
+
 @WebServlet("/createPost")
 @MultipartConfig(maxFileSize= 16177215)	//upload file's size up to 16MB
-public class PostServlet extends HttpServlet {
+public class CreatePostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PostDAO postDAO = new PostDAO();
 	
-	public PostServlet() {
+	public CreatePostServlet() {
 		super();
 	}
 	
@@ -52,20 +51,18 @@ public class PostServlet extends HttpServlet {
 			System.out.println("File size: " + filePart.getSize());
 			System.out.println("File type: " + filePart.getContentType());	// must be image
 			
-			/*
-			 * TODO: Validate file type is image
-			 */
 			if (!filePart.getContentType().equals("image/jpeg") && !filePart.getContentType().equals("image/png")) {
 				System.out.println("Uploaded file is not an image");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("create_post.jsp");	// temporary.
-				// send error message in response
-			
+				
+				/*
+				 * TODO: send error message to user, let them know that uploaded file must be .jpeg or .png
+				 */
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("create_post.jsp");	// temporary.			
 				dispatcher.forward(request, response);
 				return;
 				
 			}
-			System.out.println("still proceeding after return???");
-			
 			mediaInputStream = filePart.getInputStream();
 		}
 		
@@ -74,9 +71,9 @@ public class PostServlet extends HttpServlet {
 		ByteBuffer mediaByteBuffer = ByteBuffer.wrap(mediaBytes);
 		
 		
-//		while ()
-		List<ByteBuffer> medias = new ArrayList<ByteBuffer>();
-		medias.add(mediaByteBuffer);
+		// iterate through all files to add media content to list for > 1 image upload functionality.
+//		List<ByteBuffer> medias = new ArrayList<ByteBuffer>();
+//		medias.add(mediaByteBuffer);
 		
 		
 		System.out.println("\nRequest params:");
@@ -91,18 +88,18 @@ public class PostServlet extends HttpServlet {
 		/* Can request params only be set if they're not null? AKA do a null check on each? */
 		
 		Post post = new Post();
-		post.setPosterId(UUID.randomUUID());	// Get userId or username (post-posterId) from session token. If username, must query users table to get associated userId.
+		post.setPosterUsername("jalend");	// Get userId orusername (post-posterId) from session token. If username, must query users table to get associated userId.
 		post.setDescription(description);
 		post.setAdoptionStatus(adoptionStatus);
-		post.setMedia(medias);
+//		post.setMedia(medias);	// > 1 image functionality
+		post.setMedia(mediaByteBuffer);
 		
 		
 		System.out.println("\nPostDAO: ");
 //		System.out.println(post.getPosterId());
 		System.out.println(post.getDescription());
 		System.out.println(post.getAdoptionStatus());
-		
-//		System.out.println("going to try block");
+
 		try {
 			System.out.println("going to createpost method");
 			postDAO.createPost(post);
@@ -111,8 +108,11 @@ public class PostServlet extends HttpServlet {
 		}
 		
 //		response.sendRedirect("Temporary_SuccessfulCreation.jsp");
+		
+		/*
+		 * TODO: send the results of all posts query as response to home page
+		 */
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Temporary_SuccessfulCreation.jsp");	// temporary.
-		// send the results of all posts query as response to home page
 		dispatcher.forward(request, response);
 	}
 }

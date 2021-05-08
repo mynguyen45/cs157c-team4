@@ -1,14 +1,14 @@
-package shelterUser.suserDAO;
+package daos;
 
 import com.datastax.driver.core.exceptions.DriverException;
 
+import beans.shelterUser;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.BoundStatement;
-import shelterUser.suserModel.shelterUser;
 
 public class s_user_dao{
     public static void registerSuser(shelterUser suser) throws DriverException{   	

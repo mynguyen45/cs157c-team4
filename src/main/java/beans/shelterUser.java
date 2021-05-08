@@ -1,4 +1,4 @@
-package shelterUser.suserModel;
+package beans;
 
 public class shelterUser {
 	private int userid;
