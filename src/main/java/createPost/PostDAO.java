@@ -1,7 +1,9 @@
 package createPost;
 
 import java.util.Set;
+import java.util.UUID;
 
+import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
@@ -47,10 +49,12 @@ public class PostDAO {
 	 * Insert post into db. 
 	 */
 	public void createPost(Post post) throws ClassNotFoundException {
+		System.out.println("creating post");
+		
 		//CQL Statement
 		String INSERT_POST = "INSERT INTO posts" +
-				" (postid, description, media, adoptable, userid) VALUES" +
-				" (NULL, ?, ?, ?, ?)";	// postid value is NULL, db auto increments it.
+				" (postid, description, medias, adoptable, userid) VALUES" +
+				" (?, ?, ?, ?, ?)";	// postid value is NULL, db auto increments it.
 		
 		// Connect to Cassandra
 		Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
@@ -62,11 +66,14 @@ public class PostDAO {
 //		int posterId = User.getIdBy(post.getPoster());
 		
 		PreparedStatement preparedStatement = session.prepare(INSERT_POST);
-		ResultSet result = session.execute(preparedStatement.bind()
-				.setString(1, post.getDescription())
-//				.setString(2, post.getMedia())
-				.setBool(3, post.getAdoptionStatus())
-				.setInt(4, post.getPosterId()));
+		BoundStatement bound = preparedStatement.bind(UUID.randomUUID(), post.getDescription(), post.getAllMedia(), post.getAdoptionStatus(), post.getPosterId());
+		ResultSet result = session.execute(bound);
+//		ResultSet result = session.execute(preparedStatement.bind()
+//				.setString(1, post.getDescription())
+//				.setToNull(2)
+////				.setString(2, post.getMedia())
+//				.setBool(3, post.getAdoptionStatus())
+//				.setInt(4, post.getPosterId()));
 
 		System.out.println(result.all());
 	}
