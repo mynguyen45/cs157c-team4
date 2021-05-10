@@ -32,7 +32,7 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Doing get request for /home");
+		System.out.println("Doing GET request for /home");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("posts", postDAO.getAllPosts());
 		System.out.println("fwding to home.jsp");
@@ -44,8 +44,17 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("Doing POST request for /home");
+		System.out.println("submit button clicked: " + request.getParameter("button"));
+		switch (request.getParameter("button")) {
+			case "Comment" :
+				
+				break;
+				
+			case "Like" :
+				
+				break;
+		}
 	}
 
 }

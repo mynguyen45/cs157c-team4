@@ -20,16 +20,24 @@
         <%	
         	ArrayList<Post> posts = (ArrayList<Post>)request.getAttribute("posts");
 	    	for(Post p: posts) {
+	    		
 				String encodedImg = Base64.getEncoder().encodeToString(p.getMedia().array());
 				String image = "data:image/jpeg;base64, " + encodedImg;
         		%>
 	            <section>
-	                <h3><b><%=p.getPosterUsername()%></b></h3>
-	                <img src="<%=image %>" width="300px" height="300px" alt="Image unavailable"><br>
+	             	<h3><b><%=p.getPosterUsername()%></b></h3>
+	                <img src="<%=image %>" width="300px" height="300px" alt="Image unavailable"><br>        
 	                <text><%=p.getDescription()%></text><br>
 	                <b>Adoptable: <%=p.getAdoptionStatus() %></b>
 	                <br>
-	                <input type="button" value="View Comments" name=<%=p.getPostId() %> onclick="">
+	              	
+	               	<form action="<%= request.getContextPath() %>/home" method="post">
+	               		<input type="hidden" name="postId" value="<%=p.getPostId() %>">
+	                	<input type="submit" name="button" value="Like"><br>
+	                	<textarea rows="3" cols="100" id="comment" name="comment">Create Comment</textarea><br>
+	                	<input type="submit" name="button" value="Comment">
+	                	
+	                </form>
 	            </section><br><br>
          	<%}%>
 </p></body>
