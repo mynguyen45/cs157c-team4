@@ -1,17 +1,24 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daos.PostDAO;
+
 /**
  * Servlet implementation class HomeServlet
  */
+@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private PostDAO postDAO = new PostDAO();  
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -24,8 +31,16 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("Doing get request for /home");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("posts", postDAO.getAllPosts());
+		
+//		System.out.println("setAttribute posts: " + postDAO.getAllPosts());
+		// or sendRedirect? need to pass data to home.jsp
+		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+		dispatcher.forward(request, response);
+		
+//		response.sendRedirect("home.jsp");
 	}
 
 	/**

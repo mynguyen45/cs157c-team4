@@ -6,7 +6,7 @@
 		<section>
 			<form action="<%= request.getContextPath() %>/createPost" method="post" enctype="multipart/form-data">
 				<label for="media">Media:</label><br>
-				<input type="file" id="media" name="media" accept="image/png, image/jpeg">	<!-- Add 'multiple' as an attr to input to allow multiple file uploading -->
+				<input type="file" id="media" name="media" accept="image/jpeg">	<!-- Add 'multiple' as an attr to input to allow multiple file uploading -->
 				<br><br>
 				
 				<label for="description">Description:</label><br>

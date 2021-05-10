@@ -1,6 +1,8 @@
 package daos;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,20 +32,31 @@ public class PostDAO {
 		// Creating Session object Session
 		Session session = cluster.connect("sfapp");
 		
-		ResultSet results = session.execute(query);
-		System.out.println(results.all());
-		
+		ResultSet resultSet = session.execute(query);
+//		System.out.println("result from query: " + resultSet.all());
+		Iterator<Row> resultIterator = resultSet.iterator();
 		List<Post> posts = new ArrayList<Post>();
-		for (Row r : results.all()) {
+		while (resultIterator.hasNext()) {
+			Row row = resultIterator.next();
+			System.out.println("r: " + row.toString());
 			Post p = new Post();
-			p.setPostId(r.getUUID(0));
-			p.setAdoptionStatus(r.getBool(1));
-			p.setDescription(r.getString(2));
-			p.setMedia(r.getBytes(3));						// for only 1 image functionality
-//			p.setMedia(r.getList(3, ByteBuffer.class));		// for uploading/retrieving > 1 image functionality
-			p.setPosterUsername(r.getString(4));
-		
+			p.setPostId(row.getUUID(0)); 
+			p.setAdoptionStatus(row.getBool(1));
+			p.setDescription(row.getString(2));			
+			p.setMedia(row.getBytes(3));					// for only 1 image functionality
+			p.setMedia(row.getList(4, ByteBuffer.class));	// for uploading/retrieving > 1 image functionality
+			p.setPosterUsername(row.getString(5));
+			System.out.println("p: " + p.toString());  
 			posts.add(p);	
+		}
+		
+		// print posts list
+		for (Post p : posts) {
+			System.out.println("\n\n");  
+			System.out.println("poster name: " + p.getPosterUsername());
+			System.out.println("post desc: " + p.getDescription());
+			System.out.println("post media: " + p.getMedia());
+			System.out.println("adoption status: " + p.getAdoptionStatus());
 		}
 		return posts;
 	}

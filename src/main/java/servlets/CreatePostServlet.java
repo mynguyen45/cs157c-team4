@@ -3,9 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import beans.Post;
 import daos.PostDAO;
 
 @WebServlet("/createPost")
@@ -28,14 +27,14 @@ public class CreatePostServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Doing GET request from create_post.jsp");
+		System.out.println("Doing GET request for /createPost");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("create_post.jsp");
 		dispatcher.forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Doing POST request from CreatePost.jsp");
+		System.out.println("Doing POST request for /createPost");
 
 		String description = request.getParameter("description");
 //		id posterId = request.getParameter("posterId");	// Only use if storing this instead or username in session token.
@@ -46,13 +45,16 @@ public class CreatePostServlet extends HttpServlet {
 		InputStream mediaInputStream = null;
 		
 		Part filePart = request.getPart("media");
+		
+		
+		// filePart is always != null, even if no file is uploaded. Forces user to upload an image file to create a post.
 		if (filePart != null) {
 			System.out.println("File name: " + filePart.getName());
 			System.out.println("File size: " + filePart.getSize());
 			System.out.println("File type: " + filePart.getContentType());	// must be image
 			
-			if (!filePart.getContentType().equals("image/jpeg") && !filePart.getContentType().equals("image/png")) {
-				System.out.println("Uploaded file is not an image");
+			if (!filePart.getContentType().equals("image/jpeg")) {
+				System.out.println("Must upload a JPG or JPEG file");
 				
 				/*
 				 * TODO: send error message to user, let them know that uploaded file must be .jpeg or .png
@@ -68,8 +70,9 @@ public class CreatePostServlet extends HttpServlet {
 		
 		// Convert InputStream -> byte[] -> ByteBuffer to pass to post and store in cassandra db.
 		byte[] mediaBytes = mediaInputStream.readAllBytes(); 
+		System.out.println(mediaBytes.toString());
 		ByteBuffer mediaByteBuffer = ByteBuffer.wrap(mediaBytes);
-		
+		System.out.println(mediaByteBuffer.toString());
 		
 		// iterate through all files to add media content to list for > 1 image upload functionality.
 //		List<ByteBuffer> medias = new ArrayList<ByteBuffer>();
@@ -106,13 +109,13 @@ public class CreatePostServlet extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-//		response.sendRedirect("Temporary_SuccessfulCreation.jsp");
+		System.out.println("post created. dispatching user to HomeServlet");
+//		response.sendRedirect("/home");	// use this or the dispatcher below? look this up!
 		
 		/*
 		 * TODO: send the results of all posts query as response to home page
 		 */
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Temporary_SuccessfulCreation.jsp");	// temporary.
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
 		dispatcher.forward(request, response);
 	}
 }
