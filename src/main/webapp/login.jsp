@@ -34,7 +34,7 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Login</h2>
-                    <form method="POST" action="<%= request.getContextPath() %>/register">
+                    <form method="POST" action="<%= request.getContextPath()%>/login">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -50,14 +50,18 @@
                             </div>
 
                             <div class="col-2">
-
+                                <div class="input-group"></div>
+                                <div>
+                                
+                            
                             </div>
+                                </div>
                         </div>
                         
                         
                         
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Login</button>
                         </div>
                     </form>
                 </div>
