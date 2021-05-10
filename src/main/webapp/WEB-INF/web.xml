@@ -5,23 +5,28 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-  	<servlet-name>HomeServlet</servlet-name>
-  	<display-name>HomeServlet</display-name>
-  	<description></description>
+  	<servlet-name>Home</servlet-name>
   	<servlet-class>servlets.HomeServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>CommentServlet</servlet-name>
-  	<display-name>CommentServlet</display-name>
-  	<description></description>
+  	<servlet-name>Comment</servlet-name>
   	<servlet-class>servlets.CommentServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreatePostServlet</servlet-name>
+  	<servlet-class>servlets.CreatePostServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
-  	<servlet-name>HomeServlet</servlet-name>
-  	<url-pattern>/HomeServlet</url-pattern>
+  	<servlet-name>Home</servlet-name>
+  	<url-pattern>/home</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>CommentServlet</servlet-name>
-  	<url-pattern>/CommentServlet</url-pattern>
+  	<servlet-name>Comment</servlet-name>
+  	<url-pattern>/comment</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreatePostServlet</servlet-name>
+  	<url-pattern>/createPost</url-pattern>
   </servlet-mapping>
 </web-app>

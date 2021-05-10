@@ -15,7 +15,7 @@ import daos.PostDAO;
 /**
  * Servlet implementation class HomeServlet
  */
-@WebServlet("/home")
+//@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private PostDAO postDAO = new PostDAO();  
@@ -35,6 +35,7 @@ public class HomeServlet extends HttpServlet {
 		System.out.println("Doing get request for /home");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("posts", postDAO.getAllPosts());
+		System.out.println("fwding to home.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 		dispatcher.forward(request, response);
 	}
