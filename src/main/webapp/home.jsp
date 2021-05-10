@@ -14,7 +14,7 @@
 
 <form action="home" method="post">
         
-    </form>
+    
 	<h1>Home Page</h1>
 		<%--- Don't know how to call servlet from jsp.
 			<jsp:forward page="../java/servlets//"></jsp:forward>
@@ -30,7 +30,12 @@
                 <img src="<%=image %>" width="300px" height="300px" alt="Image unavailable"><br>
                 <text><%=p.getDescription()%></text><br>
                 <b>Adoptable: <%=p.getAdoptionStatus() %></b>
+                <tr>
+                            
+                <input type="hidden" name="Like" value="<%=p.getPostId() %>"><button type="submit" value="Like Button">Like</button>
+                </tr>
             </section><br><br>
             <%}%>
+            </form>
 </p></body>
 </html>

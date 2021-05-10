@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
+import daos.likeDAO;
 import daos.PostDAO;
+import beans.like;
 
 /**
  * Servlet implementation class HomeServlet
@@ -18,7 +21,7 @@ import daos.PostDAO;
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private PostDAO postDAO = new PostDAO();  
-	
+	private likeDAO likeDAO = new likeDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,9 +52,22 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-		dispatcher.forward(request, response);
+		//add like functionality
+		System.out.println("Post running /home");
+		HttpSession session = request.getSession();
+
+		like l = new like();
+		String username = (String)session.getAttribute("username");
+		String password = (String)session.getAttribute("password");
+		String postId = request.getParameter("Like");
+		l.setUsername(username);
+		l.setPassword(password);
+		l.setPostid(UUID.fromString(postId));
+		System.out.println(username);
+		System.out.println(postId);
+		response.sendRedirect("home");
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("home");
+		//dispatcher.forward(request, response);
 	}
 
 }

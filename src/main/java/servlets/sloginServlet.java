@@ -35,6 +35,7 @@ public class sloginServlet extends HttpServlet {
 			System.out.println("leading to home");
 			HttpSession session = request.getSession();
 			session.setAttribute("username",username);
+			session.setAttribute("password",password);
 			//RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
 			//dispatcher.forward(request, response);
 			response.sendRedirect("home");
