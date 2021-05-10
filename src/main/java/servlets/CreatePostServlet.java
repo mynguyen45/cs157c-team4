@@ -16,7 +16,7 @@ import javax.servlet.http.Part;
 import beans.Post;
 import daos.PostDAO;
 
-@WebServlet("/createPost")
+//@WebServlet("/createPost")
 @MultipartConfig(maxFileSize= 16177215)	//upload file's size up to 16MB
 public class CreatePostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +32,7 @@ public class CreatePostServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("create_post.jsp");
 		dispatcher.forward(request, response);
 	}
+	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Doing POST request for /createPost");
@@ -102,10 +103,10 @@ public class CreatePostServlet extends HttpServlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println("post created. routing user to /home");
-//		response.sendRedirect("/home");
+		System.out.println("post created. routing user to /adoptable.web/home");
+		response.sendRedirect("/adoptable.web/home");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
-		dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/home");
+//		dispatcher.forward(request, response);
 	}
 }
