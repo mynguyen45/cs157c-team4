@@ -3,6 +3,7 @@
 <%@page import="java.util.Base64" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +12,10 @@
 </head>
 <body><p style="text-align:center;">
 	<h1>Home Page</h1>
-        <%-- Fetching the attributes of the request object
-             which was previously set by the servlet 
-              "HomeServlet.java"
-        --%> 
+		<%--- Don't know how to call servlet from jsp.
+			<jsp:forward page="../java/servlets//"></jsp:forward>
+		---%>
+  
         <%	ArrayList<Post> posts = (ArrayList<Post>)request.getAttribute("posts");
 	    	for(Post p: posts) {
 				String encodedImg = Base64.getEncoder().encodeToString(p.getMedia().array());

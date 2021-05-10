@@ -23,6 +23,7 @@
 				<input type="submit" value="Post">
 			</form>
 		</section>
+		<h2 style="color:red"><%=request.getAttribute("isError") != null ? "Unable to create post: You must upload an IMAGE file." : ""%></h2>
 		
 	</body>
 </html>

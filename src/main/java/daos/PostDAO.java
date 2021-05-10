@@ -38,25 +38,14 @@ public class PostDAO {
 		List<Post> posts = new ArrayList<Post>();
 		while (resultIterator.hasNext()) {
 			Row row = resultIterator.next();
-			System.out.println("r: " + row.toString());
 			Post p = new Post();
 			p.setPostId(row.getUUID(0)); 
 			p.setAdoptionStatus(row.getBool(1));
 			p.setDescription(row.getString(2));			
 			p.setMedia(row.getBytes(3));					// for only 1 image functionality
 			p.setMedia(row.getList(4, ByteBuffer.class));	// for uploading/retrieving > 1 image functionality
-			p.setPosterUsername(row.getString(5));
-			System.out.println("p: " + p.toString());  
+			p.setPosterUsername(row.getString(5)); 
 			posts.add(p);	
-		}
-		
-		// print posts list
-		for (Post p : posts) {
-			System.out.println("\n\n");  
-			System.out.println("poster name: " + p.getPosterUsername());
-			System.out.println("post desc: " + p.getDescription());
-			System.out.println("post media: " + p.getMedia());
-			System.out.println("adoption status: " + p.getAdoptionStatus());
 		}
 		return posts;
 	}
