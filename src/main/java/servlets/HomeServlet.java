@@ -46,6 +46,7 @@ public class HomeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Doing POST request for /home");
 		System.out.println("submit button clicked: " + request.getParameter("button"));
+		System.out.println("postid: " + request.getParameter("postId").toString());
 		switch (request.getParameter("button")) {
 			case "Comment" :
 				
