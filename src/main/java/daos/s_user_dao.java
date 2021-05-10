@@ -2,18 +2,18 @@ package daos;
 
 import com.datastax.driver.core.exceptions.DriverException;
 
-import beans.shelterUser;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.BoundStatement;
+import beans.shelterUser;
 
 public class s_user_dao{
     public static void registerSuser(shelterUser suser) throws DriverException{   	
         //queries 
-        String insert_user = "INSERT INTO shelterusers (userid,username, address, email, password) values (12,?,?,?,?)";
+        String insert_user = "INSERT INTO shelterusers (username, address, email, password) values (?,?,?,?)";
         //Creating Cluster object 
         Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
         //Creating Session object 

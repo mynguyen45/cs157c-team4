@@ -11,6 +11,10 @@
 <title>Adoptable - Home</title>
 </head>
 <body><p style="text-align:center;">
+
+<form action="home" method="post">
+        
+    </form>
 	<h1>Home Page</h1>
 		<%--- Don't know how to call servlet from jsp.
 			<jsp:forward page="../java/servlets//"></jsp:forward>

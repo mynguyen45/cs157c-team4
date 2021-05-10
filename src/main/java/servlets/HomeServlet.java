@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,8 +34,14 @@ public class HomeServlet extends HttpServlet {
 		System.out.println("Doing get request for /home");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("posts", postDAO.getAllPosts());
+		
+//		System.out.println("setAttribute posts: " + postDAO.getAllPosts());
+		// or sendRedirect? need to pass data to home.jsp
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 		dispatcher.forward(request, response);
+		
+//		response.sendRedirect("home.jsp");
 	}
 
 	/**
@@ -44,7 +49,9 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
