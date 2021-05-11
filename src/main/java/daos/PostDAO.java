@@ -45,8 +45,10 @@ public class PostDAO {
 			p.setMedia(row.getBytes(3));					// for only 1 image functionality
 			p.setMedia(row.getList(4, ByteBuffer.class));	// for uploading/retrieving > 1 image functionality
 			p.setPosterUsername(row.getString(5)); 
-			posts.add(p);	
+			posts.add(p);
+			
 		}
+		session.close();
 		return posts;
 	}
 	
@@ -109,5 +111,6 @@ public class PostDAO {
 //				.setInt(4, post.getPosterId()));
 
 		System.out.println(result.all());
+		session.close();
 	}
 }
