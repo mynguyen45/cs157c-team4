@@ -68,6 +68,23 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+		//add like functionality
+		System.out.println("Post running /home");
+		HttpSession session = request.getSession();
+
+		like l = new like();
+		String username = (String)session.getAttribute("username");
+		String password = (String)session.getAttribute("password");
+		String postId = request.getParameter("Like");
+		l.setUsername(username);
+		l.setPassword(password);
+		l.setPostid(UUID.fromString(postId));
+		System.out.println(username);
+		System.out.println(postId);
+		daos.likeDAO.likePost(l);
+=======
 		System.out.println("Doing POST request for /home");
 		
 		String buttonClicked = request.getParameter("button");    
@@ -100,6 +117,7 @@ public class HomeServlet extends HttpServlet {
 			System.out.println(postId);
 		}
 		
+>>>>>>> 2ef7cb4db8ec9d2e7f77c38f64d9d49b02443d2b
 		response.sendRedirect("home");
 		//RequestDispatcher dispatcher = request.getRequestDispatcher("home");
 		//dispatcher.forward(request, response);
