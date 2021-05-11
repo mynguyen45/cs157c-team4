@@ -65,6 +65,7 @@ public class HomeServlet extends HttpServlet {
 		l.setPostid(UUID.fromString(postId));
 		System.out.println(username);
 		System.out.println(postId);
+		daos.likeDAO.likePost(l);
 		response.sendRedirect("home");
 		//RequestDispatcher dispatcher = request.getRequestDispatcher("home");
 		//dispatcher.forward(request, response);
