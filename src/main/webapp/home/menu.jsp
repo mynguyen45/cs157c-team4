@@ -1,5 +1,4 @@
-
-
+<link rel="stylesheet" href="../css/style.css"/>
 <div id="nav" class="vmenu">
 	<a class="menu_link active" href="#">Homepage</a>
 	<a class="menu_link" href="#">Link 1</a>

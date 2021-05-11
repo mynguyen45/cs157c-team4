@@ -20,14 +20,12 @@ public class RegularUser {
 	private HashSet<String> followings = new HashSet<String>();
 	private HashSet<String> followers = new HashSet<String>();
 	private HashSet<String> likePosts = new HashSet<String>();
-//	public RegularUser() {
-////		this.email = "";
-////		this.password="";
-////		this.username="";
-////		this.followers.add("");
-////		this.followings.add("");
-////		this.likePosts.add("");
-//	}
+	public RegularUser() {}
+	public RegularUser(String username, String password) {
+		this.password=username;
+		this.username=password;
+
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -63,6 +61,12 @@ public class RegularUser {
 	}
 	public HashSet<String> getLikedPost() {
 		return this.likePosts;
+	}
+	public String toString() {
+		return this.username+" "+this.password;
+	}
+	public boolean isEmpty() {
+		return this.username == null;
 	}
 
 }

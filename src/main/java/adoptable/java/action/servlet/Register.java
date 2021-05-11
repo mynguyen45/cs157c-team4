@@ -23,11 +23,11 @@ import com.datastax.driver.core.BoundStatement;
 @WebServlet(name="register", urlPatterns = {"/register"})
 public class Register extends HttpServlet {
 	//private static final long serialVersionUID = 1L;
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-//		dispatcher.forward(request,response);
-//	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request,response);
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String username = request.getParameter("username");
@@ -37,21 +37,22 @@ public class Register extends HttpServlet {
 			//Cluster c = DBUtil.getCluster();
 			Boolean registered = RuserBusiness.register(username, password, email);
 			if(registered) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-				dispatcher.forward(request,response);
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
+//				dispatcher.forward(request,response);
+				response.sendRedirect( "login.jsp");
+				System.out.println("register is running");
 			} else
 			{
 				request.setAttribute("err", "");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 				dispatcher.forward(request,response);
 			}
 		} catch (Exception e) {
 			request.setAttribute("err", "system error "+e.getMessage());
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request,response);
 		}
-		
-		
+			
 	}
 
 }
