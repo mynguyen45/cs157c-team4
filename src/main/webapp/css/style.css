@@ -2,7 +2,7 @@
   position: absolute;
   width: 100%;
   top: 10px;
-  background-color: lightyellow;
+  background-color: lightgreen;
   padding: 20px;
   height: 40px;
 }
@@ -46,7 +46,7 @@
   height: 80%;
   padding: 20px;
   width:90%;
-  background-color:lavender;
+  background-color:white;
 }
 #footer{
   position: absolute;

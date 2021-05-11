@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="../css/style.css"/>
 <div id="nav" class="vmenu">
 	<a class="menu_link active" href="#">Homepage</a>
-	<a class="menu_link" href="#">Link 1</a>
-	<a class="menu_link" href="#">Link 2</a>
-	<a class="menu_link" href="#">Link 3</a>
+	<a class="menu_link" href="#">Your profile</a>
+	<a class="menu_link" href="#">Photos</a>
+	<a class="menu_link" href="#">Friends</a>
 </div>
 
 <script>

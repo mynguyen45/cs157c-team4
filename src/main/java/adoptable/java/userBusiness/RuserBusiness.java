@@ -21,7 +21,7 @@ public class RuserBusiness{
 	
 	public static void main(String[] args) {
 		
-		System.out.println("connected");		
+		System.out.println(login("1","2"));		
 	}
     public static boolean login (String username, String password){   	
         //queries 
@@ -35,7 +35,8 @@ public class RuserBusiness{
     	bound.setString(1,password);
     	ResultSet result = session.execute(bound);
     
-    	if( result.all().size() ==1) {    		
+    	if( result.all().size() ==1) {  
+    		System.out.println(result.all());
     		return true;
     	}    		
     	return false;      	

@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col"></div>
                 <div class="col">
-                    <button type="submit">Login</button>
+                    <button type="submit">Register</button>
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
 				request.getSession().setAttribute("CURRENT_USER", logined);
 //				RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
 //				dispatcher.forward(request,response);
-				response.sendRedirect("header.jsp");
+				response.sendRedirect("home/index.jsp");
 				System.out.println("logined true running");
 			} 
 			else
