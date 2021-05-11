@@ -15,7 +15,7 @@ import beans.shelterUser;
 /**
  * Servlet implementation class EmployeeServlet
  */
-@WebServlet("/register")
+//@WebServlet("/register")
 public class suserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

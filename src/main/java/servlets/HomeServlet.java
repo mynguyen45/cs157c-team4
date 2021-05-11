@@ -50,13 +50,14 @@ public class HomeServlet extends HttpServlet {
 		System.out.println("Doing POST request for /home");
 		System.out.println("submit button clicked: " + request.getParameter("button"));
     
-    String postId = request.getParameter("postId").toString();
+		String postId = request.getParameter("postId").toString();
 		System.out.println("postid: " + postId);
     
-    HttpSession session = request.getSession();
-    String username = (String)session.getAttribute("username");
-		String password = (String)session.getAttribute("password");
+	    HttpSession session = request.getSession();
+	    String username = (String)session.getAttribute("username");
+//		String password = (String)session.getAttribute("password");
     
+		System.out.println("Session user: " + username);
 		switch (request.getParameter("button")) {
 			case "Comment" :
 				
@@ -64,11 +65,11 @@ public class HomeServlet extends HttpServlet {
 				
 			case "Like" :
 				like l = new like();
-        l.setUsername(username);
-        l.setPassword(password);
-        l.setPostid(UUID.fromString(postId));
-        System.out.println(username);
-        System.out.println(postId);
+				l.setUsername(username);
+//        l.setPassword(password);
+				l.setPostid(UUID.fromString(postId));
+				System.out.println(username);
+				System.out.println(postId);
 				break;
 		}
 		

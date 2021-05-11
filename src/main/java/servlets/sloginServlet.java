@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import daos.slogin_dao;
 import beans.sloginInfo;
 
-@WebServlet("/slogin")
+//@WebServlet("/slogin")
 public class sloginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private slogin_dao loginDao;
