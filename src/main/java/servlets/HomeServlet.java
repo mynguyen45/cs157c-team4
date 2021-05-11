@@ -17,7 +17,7 @@ import beans.like;
 /**
  * Servlet implementation class HomeServlet
  */
-@WebServlet("/home")
+//@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private PostDAO postDAO = new PostDAO();  
@@ -34,13 +34,9 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Doing get request for /home");
+		System.out.println("Doing GET request for /home");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("posts", postDAO.getAllPosts());
-		
-//		System.out.println("setAttribute posts: " + postDAO.getAllPosts());
-		// or sendRedirect? need to pass data to home.jsp
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 		dispatcher.forward(request, response);
 		
@@ -51,6 +47,7 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		//add like functionality
 		System.out.println("Post running /home");
@@ -66,6 +63,34 @@ public class HomeServlet extends HttpServlet {
 		System.out.println(username);
 		System.out.println(postId);
 		daos.likeDAO.likePost(l);
+=======
+		System.out.println("Doing POST request for /home");
+		System.out.println("submit button clicked: " + request.getParameter("button"));
+    
+		String postId = request.getParameter("postId").toString();
+		System.out.println("postid: " + postId);
+    
+	    HttpSession session = request.getSession();
+	    String username = (String)session.getAttribute("username");
+//		String password = (String)session.getAttribute("password");
+    
+		System.out.println("Session user: " + username);
+		switch (request.getParameter("button")) {
+			case "Comment" :
+				
+				break;
+				
+			case "Like" :
+				like l = new like();
+				l.setUsername(username);
+//        l.setPassword(password);
+				l.setPostid(UUID.fromString(postId));
+				System.out.println(username);
+				System.out.println(postId);
+				break;
+		}
+		
+>>>>>>> 2ef7cb4db8ec9d2e7f77c38f64d9d49b02443d2b
 		response.sendRedirect("home");
 		//RequestDispatcher dispatcher = request.getRequestDispatcher("home");
 		//dispatcher.forward(request, response);

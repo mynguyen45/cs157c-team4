@@ -1,9 +1,11 @@
 package daos;
 
 public class CommentDAO {
-
-	public CommentDAO() {
-		// TODO Auto-generated constructor stub
+	
+	public createComment(String comment) {
+		
 	}
+	
+	public getComments(UUID post)
 
 }
